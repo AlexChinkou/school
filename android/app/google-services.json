@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "250690420495",
+    "project_id": "my-school-85d08",
+    "storage_bucket": "my-school-85d08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250690420495:android:5e77f9f6a04e497ca0c87a",
+        "android_client_info": {
+          "package_name": "com.example.flutter_school"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250690420495-67n14kpq67rssmhred38t66efjv6i96c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa5y9K3VmCZ65Lj6BB4oNgw9sVvsohOQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250690420495-67n14kpq67rssmhred38t66efjv6i96c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
