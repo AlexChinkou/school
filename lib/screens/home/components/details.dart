@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_school/screens/Comments/Comments.dart';
 import 'package:flutter_school/screens/home/home.dart';
 
 class Details extends StatefulWidget {
@@ -143,7 +144,7 @@ class _DetailsState extends State<Details> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return HomeScreen(); // indique la page a suivre
+                                      return CommentsScreen(); // indique la page a suivre
                                     },
                                   ),
                                 );

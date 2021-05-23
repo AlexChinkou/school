@@ -25,6 +25,7 @@ class _BodyState extends State<Body> {
   String email;
   String username;
   String password;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
