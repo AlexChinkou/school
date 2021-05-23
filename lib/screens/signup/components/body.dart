@@ -13,7 +13,7 @@ import 'package:flutter_school/screens/signup/components/social_icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Body extends StatefulWidget {
-  static const String id = 'Body';
+  static const String id = 'Bodt';
 
   @override
   _BodyState createState() => _BodyState();
