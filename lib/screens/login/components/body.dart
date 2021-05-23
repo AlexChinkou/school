@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_school/components/already_have_an_account_acheck.dart';
 import 'package:flutter_school/components/rounded_button.dart';
@@ -6,12 +7,18 @@ import 'package:flutter_school/components/rounded_password_field.dart';
 import 'package:flutter_school/screens/home/home.dart';
 import 'package:flutter_school/screens/login/components/background.dart';
 import 'package:flutter_school/screens/signup/signup_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
 
+class _BodyState extends State<Body> {
+  String email;
+  String password;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,23 +43,64 @@ class Body extends StatelessWidget {
               ),
             ),
             RoundedInputField(
-              hintText: "Your Email or User Name",
-              onChanged: (value) {},
+              hintText: "Your Email ",
+              onChanged: (value) {
+                email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                password = value;
+              },
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HomeScreen();
-                    },
-                  ),
-                );
+              press: () async {
+                if (emailController.text.isEmpty ||
+                    passwordController.text.isEmpty) {
+                  print('empty');
+
+                  Fluttertoast.showToast(
+                      msg: 'Fill the Fields !',
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.lightBlue,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                } else {
+                  try {
+                    await FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                      email: email,
+                      password: password,
+                    )
+                        .whenComplete(() {
+                      Fluttertoast.showToast(
+                          msg: ' login sucess !',
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.lightBlue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return HomeScreen();
+                          },
+                        ),
+                      );
+                    });
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'user-not-found') {
+                      print('No user found for that email.');
+                    } else if (e.code == 'wrong-password') {
+                      print('Wrong password provided for that user.');
+                    }
+                  }
+                }
               },
             ),
             AlreadyHaveAnAccountCheck(
