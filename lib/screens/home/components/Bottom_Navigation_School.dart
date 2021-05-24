@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_school/screens/explore/explore.dart';
 import 'package:flutter_school/user%20page/page/profile_page.dart';
-
-import 'package:flutter_school/user%20page/wiget/profile_widget.dart';
 import 'package:flutter_school/screens/home/home.dart';
 
 class BottomNavigationSchool extends StatefulWidget {

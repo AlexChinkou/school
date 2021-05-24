@@ -2,7 +2,6 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_school/constants.dart';
 import 'package:flutter_school/screens/in/intro.dart';
 import 'package:flutter_school/themes.dart';
 

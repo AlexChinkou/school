@@ -18,8 +18,7 @@ class _BodyState extends State<Body> {
   final auth = FirebaseAuth.instance;
   String email;
   String password;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,7 +43,7 @@ class _BodyState extends State<Body> {
               ),
             ),
             RoundedInputField(
-              hintText: "Your Email ",
+              hintText: "Enter your Email ",
               onChanged: (value) {
                 email = value;
               },
@@ -64,11 +63,11 @@ class _BodyState extends State<Body> {
                   );
                   if (user != null) {
                     Fluttertoast.showToast(
-                        msg: ' login sucess !',
+                        msg: ' Welcome back🤗🤗!',
                         toastLength: Toast.LENGTH_LONG,
                         gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 2,
-                        backgroundColor: Colors.lightBlue,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.lightBlue[300],
                         textColor: Colors.white,
                         fontSize: 16.0);
                     Navigator.pushReplacement(
@@ -83,20 +82,20 @@ class _BodyState extends State<Body> {
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {
                     Fluttertoast.showToast(
-                        msg: ' No user found for that email !',
-                        toastLength: Toast.LENGTH_LONG,
+                        msg: ' Wrong Email or password, please try again !',
+                        toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Colors.lightBlue[300],
                         textColor: Colors.white,
                         fontSize: 16.0);
                   } else if (e.code == 'wrong-password') {
                     Fluttertoast.showToast(
-                        msg: ' Wrong password provided for that user!',
-                        toastLength: Toast.LENGTH_LONG,
+                        msg: ' Wrong Email or password, please try again !',
+                        toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Colors.lightBlue[300],
                         textColor: Colors.white,
                         fontSize: 16.0);
                   }

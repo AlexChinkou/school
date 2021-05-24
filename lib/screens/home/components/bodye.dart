@@ -3,7 +3,6 @@ import 'package:flutter_school/constants.dart';
 import 'package:flutter_school/screens/home/components/Bottom_Navigation_School.dart';
 import 'package:flutter_school/screens/home/components/carousels_model.dart';
 import 'package:flutter_school/screens/home/components/details.dart';
-import 'package:flutter_school/screens/home/components/profile.dart';
 import 'package:flutter_school/screens/home/school_College.dart';
 import 'package:flutter_school/screens/home/school_details.dart';
 import 'package:flutter_school/screens/home/school_high.dart';

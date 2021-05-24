@@ -79,32 +79,34 @@ class _BodyState extends State<Body> {
                   await auth
                       .createUserWithEmailAndPassword(
                           email: email, password: password)
-                      .then((userCredential) {
-                    if (userCredential.user.email != null) {
-                      Fluttertoast.showToast(
-                          msg: 'registration success',
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.lightBlue,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
+                      .then(
+                    (userCredential) {
+                      if (userCredential.user.email != null) {
+                        Fluttertoast.showToast(
+                            msg: 'Welcome 😃😃!',
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.lightBlue,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
 
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                    } else {
-                      Fluttertoast.showToast(
-                          msg: 'registration failed',
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.lightBlue,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
-                    }
-                  },);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: 'registration failed',
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.lightBlue,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      }
+                    },
+                  );
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
                     Fluttertoast.showToast(
@@ -112,7 +114,7 @@ class _BodyState extends State<Body> {
                         toastLength: Toast.LENGTH_LONG,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Colors.lightBlue[300],
                         textColor: Colors.white,
                         fontSize: 16.0);
                   } else if (e.code == 'email-already-in-use') {
@@ -121,7 +123,7 @@ class _BodyState extends State<Body> {
                         toastLength: Toast.LENGTH_LONG,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Colors.lightBlue[300],
                         textColor: Colors.white,
                         fontSize: 16.0);
                   }
