@@ -140,8 +140,9 @@ class HomeMainScreen extends State<Bodye> {
                       children: <Widget>[
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) {
                               return Details();
                             }));
                           },

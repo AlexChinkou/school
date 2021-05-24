@@ -15,6 +15,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  final auth = FirebaseAuth.instance;
   String email;
   String password;
   TextEditingController emailController = TextEditingController();
@@ -56,50 +57,51 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "LOGIN",
               press: () async {
-                if (emailController.text.isEmpty ||
-                    passwordController.text.isEmpty) {
-                  print('empty');
-
-                  Fluttertoast.showToast(
-                      msg: 'Fill the Fields !',
-                      toastLength: Toast.LENGTH_LONG,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.lightBlue,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                } else {
-                  try {
-                    await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                      email: email,
-                      password: password,
-                    )
-                        .whenComplete(() {
-                      Fluttertoast.showToast(
-                          msg: ' login sucess !',
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.lightBlue,
-                          textColor: Colors.white,
-                          fontSize: 16.0);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return HomeScreen();
-                          },
-                        ),
-                      );
-                    });
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'user-not-found') {
-                      print('No user found for that email.');
-                    } else if (e.code == 'wrong-password') {
-                      print('Wrong password provided for that user.');
-                    }
+                try {
+                  final user = await auth.signInWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
+                  if (user != null) {
+                    Fluttertoast.showToast(
+                        msg: ' login sucess !',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 2,
+                        backgroundColor: Colors.lightBlue,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return HomeScreen();
+                        },
+                      ),
+                    );
                   }
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    Fluttertoast.showToast(
+                        msg: ' No user found for that email !',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.lightBlue,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  } else if (e.code == 'wrong-password') {
+                    Fluttertoast.showToast(
+                        msg: ' Wrong password provided for that user!',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.lightBlue,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  }
+                } catch (e) {
+                  print(e);
                 }
               },
             ),

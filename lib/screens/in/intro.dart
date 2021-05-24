@@ -88,7 +88,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   textColor: Colors.white,
                   color: Colors.lightBlue[400],
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
@@ -132,7 +132,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 child: GestureDetector(
                   onTap: () {
                     if (_pageViewController.page == introPages.length - 1) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) {

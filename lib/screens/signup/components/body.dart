@@ -15,7 +15,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Body extends StatefulWidget {
-  static const String id = 'Bodt';
+  static const String id = 'Body';
 
   @override
   _BodyState createState() => _BodyState();
@@ -23,6 +23,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final auth = FirebaseAuth.instance;
+
   bool showSpinner = false;
   String email;
   String username;
@@ -74,11 +75,65 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "SIGN UP",
               press: () async {
-                print(username);
-                print(email);
-                print(password);
+                try {
+                  await auth
+                      .createUserWithEmailAndPassword(
+                          email: email, password: password)
+                      .then((userCredential) {
+                    if (userCredential.user.email != null) {
+                      Fluttertoast.showToast(
+                          msg: 'registration success',
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.lightBlue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
 
-                if (usernameController.text.isEmpty ||
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: 'registration failed',
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.lightBlue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
+                  },);
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    Fluttertoast.showToast(
+                        msg: 'The password provided is too weak.',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.lightBlue,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  } else if (e.code == 'email-already-in-use') {
+                    Fluttertoast.showToast(
+                        msg: 'The account already exists for that email.',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.lightBlue,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  }
+                } catch (e) {
+                  print(e);
+                }
+              }
+              //print(username);
+              //print(email);
+              //print(password);
+
+              /* if (usernameController.text.isEmpty ||
                     emailController.text.isEmpty ||
                     passwordController.text.isEmpty) {
                   print('empty');
@@ -87,7 +142,7 @@ class _BodyState extends State<Body> {
                       msg: 'Fill the Fields !',
                       toastLength: Toast.LENGTH_LONG,
                       gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
+                      timeInSecForIosWeb: 2,
                       backgroundColor: Colors.lightBlue,
                       textColor: Colors.white,
                       fontSize: 16.0);
@@ -136,8 +191,8 @@ class _BodyState extends State<Body> {
                   } catch (e) {
                     print(e);
                   }
-                }
-              },
+                }*/
+              ,
             ),
             SizedBox(height: size.height * 0.02),
             AlreadyHaveAnAccountCheck(
