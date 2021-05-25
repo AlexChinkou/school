@@ -6,7 +6,8 @@ import 'package:flutter_school/components/rounded_button.dart';
 import 'package:flutter_school/components/rounded_input_field.dart';
 import 'package:flutter_school/components/rounded_password_field.dart';
 import 'package:flutter_school/screens/home/home.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter_school/screens/login/login_screen.dart';
 import 'package:flutter_school/screens/signup/components/background.dart';
 import 'package:flutter_school/screens/signup/components/or_divider.dart';
@@ -24,14 +25,11 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final auth = FirebaseAuth.instance;
 
+  GoogleSignIn _googleSignIn = GoogleSignIn();
   bool showSpinner = false;
   String email;
   String username;
   String password;
-
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +222,11 @@ class _BodyState extends State<Body> {
                 ),
                 SocialIcon(
                   iconSrc: "assets/images/h.png",
-                  press: () {},
+                  press: () {
+                    _googleSignIn.signIn().then((userData) {}).catchError((e) {
+                      print(e);
+                    });
+                  },
                 ),
               ],
             )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_school/constants.dart';
-import 'package:flutter_school/screens/home/components/Bottom_Navigation_School.dart';
 import 'package:flutter_school/screens/home/components/carousels_model.dart';
 import 'package:flutter_school/screens/home/components/details.dart';
 import 'package:flutter_school/screens/home/school_College.dart';
@@ -28,7 +27,6 @@ class HomeMainScreen extends State<Bodye> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationSchool(),
       body: Container(
         child: ListView(
           physics: ClampingScrollPhysics(),

@@ -4,6 +4,7 @@ import 'package:flutter_school/components/already_have_an_account_acheck.dart';
 import 'package:flutter_school/components/rounded_button.dart';
 import 'package:flutter_school/components/rounded_input_field.dart';
 import 'package:flutter_school/components/rounded_password_field.dart';
+import 'package:flutter_school/screens/home/components/Bottom_Navigation_School.dart';
 import 'package:flutter_school/screens/home/home.dart';
 import 'package:flutter_school/screens/login/components/background.dart';
 import 'package:flutter_school/screens/signup/signup_screen.dart';
@@ -74,7 +75,7 @@ class _BodyState extends State<Body> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return HomeScreen();
+                          return BottomNavigationSchool();
                         },
                       ),
                     );
@@ -86,7 +87,7 @@ class _BodyState extends State<Body> {
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.lightBlue[300],
+                        backgroundColor: Colors.lightBlue[200],
                         textColor: Colors.white,
                         fontSize: 16.0);
                   } else if (e.code == 'wrong-password') {
@@ -95,7 +96,7 @@ class _BodyState extends State<Body> {
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.lightBlue[300],
+                        backgroundColor: Colors.lightBlue[200],
                         textColor: Colors.white,
                         fontSize: 16.0);
                   }
