@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_school/screens/home/components/Bottom_Navigation_School.dart';
 import 'package:flutter_school/screens/home/components/details.dart';
 import 'package:flutter_school/screens/home/home.dart';
 
@@ -43,7 +44,7 @@ class Schooldetails extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return HomeScreen(); // indique la page a suivre
+                                return BottomNavigationSchool(); // indique la page a suivre
                               },
                             ),
                           );

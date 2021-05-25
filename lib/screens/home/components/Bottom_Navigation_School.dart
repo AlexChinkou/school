@@ -34,7 +34,7 @@ class BottomNavigationSchoolState extends State<BottomNavigationSchool> {
         letIndexChange: (index) => true,
         color: Colors.lightBlueAccent,
         backgroundColor: Colors.lightBlue[200],
-        buttonBackgroundColor: Colors.blueAccent,
+        buttonBackgroundColor: Colors.blue,
         height: 55,
         items: [
           Icon(

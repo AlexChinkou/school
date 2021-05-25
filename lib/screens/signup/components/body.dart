@@ -5,9 +5,8 @@ import 'package:flutter_school/components/rounded_Email_field.dart';
 import 'package:flutter_school/components/rounded_button.dart';
 import 'package:flutter_school/components/rounded_input_field.dart';
 import 'package:flutter_school/components/rounded_password_field.dart';
-import 'package:flutter_school/screens/home/home.dart';
+import 'package:flutter_school/screens/home/components/Bottom_Navigation_School.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter_school/screens/login/login_screen.dart';
 import 'package:flutter_school/screens/signup/components/background.dart';
 import 'package:flutter_school/screens/signup/components/or_divider.dart';
@@ -92,7 +91,8 @@ class _BodyState extends State<Body> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                                builder: (context) =>
+                                    BottomNavigationSchool()));
                       } else {
                         Fluttertoast.showToast(
                             msg: 'registration failed',
