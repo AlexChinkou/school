@@ -6,4 +6,8 @@ class CrudMethods {
       print(e);
     });
   }
+
+  getData() async {
+    return await FirebaseFirestore.instance.collection("school").get();
+  }
 }

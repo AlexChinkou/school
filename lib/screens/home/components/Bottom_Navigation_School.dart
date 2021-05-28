@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_school/screens/Comments/Comments.dart';
 import 'package:flutter_school/screens/explore/explore.dart';
+import 'package:flutter_school/screens/post/post.dart';
 import 'package:flutter_school/user%20page/page/profile_page.dart';
 import 'package:flutter_school/screens/home/home.dart';
 
@@ -15,7 +15,7 @@ class BottomNavigationSchoolState extends State<BottomNavigationSchool> {
   final List<Widget> _children = [
     HomeScreen(),
     Explore(),
-    CommentsScreen(),
+    Postscreen(),
     ProfilePage(),
   ];
   void onTabTapped(int index) {
@@ -32,30 +32,30 @@ class BottomNavigationSchoolState extends State<BottomNavigationSchool> {
         onTap: onTabTapped, // new
         index: _currentIndex,
         letIndexChange: (index) => true,
-        color: Colors.lightBlueAccent,
+        color: Colors.white,
         backgroundColor: Colors.lightBlue[200],
-        buttonBackgroundColor: Colors.blue,
+        buttonBackgroundColor: Colors.white,
         height: 55,
         items: [
           Icon(
             Icons.home,
             size: 20,
-            color: Colors.white,
+            color: Colors.lightBlue,
           ),
           Icon(
             Icons.search,
             size: 20,
-            color: Colors.white,
+            color: Colors.lightBlue,
           ),
           Icon(
             Icons.add_circle_rounded,
             size: 20,
-            color: Colors.white,
+            color: Colors.lightBlue,
           ),
           Icon(
             Icons.account_circle,
             size: 20,
-            color: Colors.white,
+            color: Colors.lightBlue,
           ),
         ],
       ),

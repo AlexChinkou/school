@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_school/screens/home/components/Bottom_Navigation_School.dart';
-import 'package:flutter_school/screens/home/home.dart';
 
 class CollegeSchool extends StatelessWidget {
   const CollegeSchool({Key key}) : super(key: key);
